@@ -291,3 +291,89 @@ footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--mute
       <button onclick="copyDC(this)" class="dc-btn" style="margin-top:0">💬 Скопировать Discord: pingvinautist</button>
     </div>
     <p style="color: #38bdf8; font-weight: 700; font-size: 13px;">Выдача происходит в течение 5 минут после оплаты!</p>
+<footer>
+  <div class="wrap foot">
+    <div><strong style="color: #fff;">ComfortWorld</strong> • © 2026 Все права защищены. Не является официальным продуктом Mojang.</div>
+    <div>IP: <strong style="color: #38bdf8;">comfortworld.gigacube.host</strong></div>
+  </div>
+</footer>
+    
+<div class="modal" id="modal">
+  <div class="m-box">
+    <span class="m-close" onclick="closeM()">&times;</span>
+    <h3 id="mtitle">Покупка</h3>
+    <p>Для покупки напишите администратору, указав ваш <strong>игровой ник</strong> и выбранный товар:</p>
+    <div class="contact-list">
+      <a href="https://t.me" target="_blank" class="tg-btn" style="margin-top:0">✈️ Написать в Telegram: @taicer</a>
+      <button onclick="copyDC(this)" class="dc-btn" style="margin-top:0">💬 Скопировать Discord: pingvinautist</button>
+    </div>
+    <p style="color: #38bdf8; font-weight: 700; font-size: 13px;">Выдача происходит в течение 5 минут после оплаты!</p>
+  </div>
+</div>
+
+<script>
+function copyIP() {
+  navigator.clipboard.writeText('comfortworld.gigacube.host').then(() => {
+    const b = document.getElementById('ip-btn');
+    b.innerText = '✅ IP Скопирован!';
+    setTimeout(() => { b.innerText = '📋 Скопировать IP'; }, 2500);
+  });
+}
+function copyDC(btn) {
+  navigator.clipboard.writeText('pingvinautist').then(() => {
+    const old = btn.innerText;
+    btn.innerText = '✅ Ник pingvinautist скопирован!';
+    btn.style.background = '#22c55e';
+    setTimeout(() => { btn.innerText = old; btn.style.background = ''; }, 2500);
+  });
+}
+function setC(c, el) {
+  document.querySelectorAll('.c-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.price').forEach(p => {
+    const s = p.querySelector('span').outerHTML;
+    p.innerHTML = (c === 'RUB' ? p.dataset.rub + ' ₽ ' : c === 'UAH' ? p.dataset.uah + ' ₴ ' : '$' + p.dataset.usd + ' ') + s;
+  });
+}
+function filterCat(cat, el) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('cat-title').innerText = el.innerText;
+  document.querySelectorAll('.item').forEach(i => {
+    i.style.display = i.dataset.cat === cat ? 'flex' : 'none';
+  });
+}
+function openM(t) {
+  document.getElementById('mtitle').innerText = 'Покупка: ' + t;
+  document.getElementById('modal').style.display = 'flex';
+}
+function closeM() {
+  document.getElementById('modal').style.display = 'none';
+}
+window.onclick = e => { if (e.target === document.getElementById('modal')) closeM(); };
+
+const cv = document.getElementById('snow');
+const cx = cv.getContext('2d');
+let w = cv.width = innerWidth, h = cv.height = innerHeight;
+addEventListener('resize', () => { w = cv.width = innerWidth; h = cv.height = innerHeight; });
+const fl = Array.from({ length: 45 }, () => ({
+  x: Math.random() * w, y: Math.random() * h,
+  r: Math.random() * 2.5 + 1, sy: Math.random() * 0.8 + 0.4, sx: Math.random() * 0.4 - 0.2
+}));
+function draw() {
+  cx.clearRect(0, 0, w, h);
+  cx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+  cx.beginPath();
+  for (let f of fl) {
+    cx.moveTo(f.x, f.y);
+    cx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+    f.y += f.sy; f.x += f.sx;
+    if (f.y > h) { f.y = -5; f.x = Math.random() * w; }
+  }
+  cx.fill();
+  requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
