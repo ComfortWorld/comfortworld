@@ -41,7 +41,7 @@ header { background: rgba(9, 13, 22, 0.94); border-bottom: 1px solid var(--borde
 .hero h1 span { color: var(--red); }
 .hero p { color: #cbd5e1; font-size: 15px; line-height: 1.6; max-width: 500px; margin-bottom: 26px; }
 .btns { display: flex; gap: 14px; flex-wrap: wrap; }
-.btn-red { background: var(--grad); color: #fff; border: none; padding: 14px 24px; border-radius: 12px; font-weight: 800; font-size: 14px; cursor: pointer; }
+.btn-red { background: var(--grad); color: #fff; border: none; padding: 14px 24px; border-radius: 12px; font-weight: 800; font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; }
 .btn-dark { background: var(--card); color: #fff; border: 1px solid var(--border); padding: 14px 24px; border-radius: 12px; font-weight: 700; font-size: 14px; text-decoration: none; }
 .emblem { text-align: center; background: rgba(17, 23, 38, 0.75); border: 1px solid var(--border); border-radius: 22px; padding: 35px 20px; }
 .emblem h2 { font-size: 30px; font-weight: 900; }
@@ -58,7 +58,8 @@ header { background: rgba(9, 13, 22, 0.94); border-bottom: 1px solid var(--borde
 .side-title { font-size: 11px; font-weight: 800; color: var(--muted); letter-spacing: 1px; margin-bottom: 12px; text-transform: uppercase; }
 .cat-btn { width: 100%; text-align: left; background: transparent; border: none; color: var(--muted); padding: 12px 14px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; display: block; margin-bottom: 6px; }
 .cat-btn.active, .cat-btn:hover { background: rgba(239, 68, 68, 0.15); color: #fff; border-left: 3px solid var(--red); }
-.dc-btn { display: block; text-align: center; background: #5865F2; color: #fff; text-decoration: none; padding: 11px; border-radius: 10px; font-weight: 800; font-size: 13px; margin-top: 12px; }
+.tg-btn { display: block; text-align: center; background: #229ED9; color: #fff; text-decoration: none; padding: 11px; border-radius: 10px; font-weight: 800; font-size: 13px; margin-top: 12px; }
+.dc-btn { display: block; width: 100%; text-align: center; background: #5865F2; color: #fff; border: none; padding: 11px; border-radius: 10px; font-weight: 800; font-size: 13px; margin-top: 8px; cursor: pointer; }
 .shop-head { margin-bottom: 20px; }
 .shop-head h2 { font-size: 24px; font-weight: 900; }
 .shop-head p { font-size: 13px; color: var(--muted); }
@@ -80,10 +81,11 @@ header { background: rgba(9, 13, 22, 0.94); border-bottom: 1px solid var(--borde
 footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: 12px; }
 .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
 .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0, 0, 0, 0.8); align-items: center; justify-content: center; padding: 20px; }
-.m-box { background: var(--card2); border: 1px solid var(--red); border-radius: 20px; padding: 28px; max-width: 400px; width: 100%; text-align: center; position: relative; }
+.m-box { background: var(--card2); border: 1px solid var(--red); border-radius: 20px; padding: 28px; max-width: 420px; width: 100%; text-align: center; position: relative; }
 .m-close { position: absolute; top: 14px; right: 18px; font-size: 24px; color: var(--muted); cursor: pointer; }
-.m-box h3 { margin-bottom: 12px; }
-.m-box p { color: #cbd5e1; font-size: 14px; line-height: 1.6; margin-bottom: 18px; }
+.m-box h3 { margin-bottom: 12px; font-size: 20px; }
+.m-box p { color: #cbd5e1; font-size: 14px; line-height: 1.6; margin-bottom: 14px; }
+.contact-list { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
 @media (max-width: 850px) { .hero-grid, .layout, .stats { grid-template-columns: 1fr; } .hero h1 { font-size: 34px; } }
 </style>
 </head>
@@ -145,9 +147,10 @@ footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--mute
         <button class="cat-btn" onclick="filterCat('service', this)">⚡ Услуги</button>
       </div>
       <div class="side-box">
-        <div class="side-title">Наше сообщество</div>
-        <p style="font-size: 13px; color: #cbd5e1; line-height: 1.5;">Присоединяйся к игрокам ComfortWorld, следи за новостями и конкурсами!</p>
-        <a href="#shop" onclick="openM('Связь с администрацией')" class="dc-btn">💬 Написать админу</a>
+        <div class="side-title">Связь и покупка</div>
+        <p style="font-size: 13px; color: #cbd5e1; line-height: 1.5;">По вопросам доната и сервера пиши администратору напрямую:</p>
+        <a href="https://t.me" target="_blank" class="tg-btn">✈️ Telegram: @taicer</a>
+        <button onclick="copyDC(this)" class="dc-btn">💬 Discord: pingvinautist</button>
       </div>
     </aside>
     <div>
@@ -227,9 +230,12 @@ footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--mute
   <div class="m-box">
     <span class="m-close" onclick="closeM()">&times;</span>
     <h3 id="mtitle">Покупка</h3>
-    <p>Для покупки напишите администратору в Telegram или Discord, указав ваш <strong>игровой ник</strong> и выбранный товар.</p>
-    <p style="color: #38bdf8; font-weight: 700;">Выдача происходит в течение 5 минут после оплаты!</p>
-    <button class="btn-red" onclick="closeM()">Понятно</button>
+    <p>Для покупки напишите администратору, указав ваш <strong>игровой ник</strong> и выбранный товар:</p>
+    <div class="contact-list">
+      <a href="https://t.me" target="_blank" class="tg-btn" style="margin-top:0">✈️ Написать в Telegram: @taicer</a>
+      <button onclick="copyDC(this)" class="dc-btn" style="margin-top:0">💬 Скопировать Discord: pingvinautist</button>
+    </div>
+    <p style="color: #38bdf8; font-weight: 700; font-size: 13px;">Выдача происходит в течение 5 минут после оплаты!</p>
   </div>
 </div>
 
@@ -239,6 +245,14 @@ function copyIP() {
     const b = document.getElementById('ip-btn');
     b.innerText = '✅ IP Скопирован!';
     setTimeout(() => { b.innerText = '📋 Скопировать IP'; }, 2500);
+  });
+}
+function copyDC(btn) {
+  navigator.clipboard.writeText('pingvinautist').then(() => {
+    const old = btn.innerText;
+    btn.innerText = '✅ Ник pingvinautist скопирован!';
+    btn.style.background = '#22c55e';
+    setTimeout(() => { btn.innerText = old; btn.style.background = ''; }, 2500);
   });
 }
 function setC(c, el) {
@@ -258,7 +272,7 @@ function filterCat(cat, el) {
   });
 }
 function openM(t) {
-  document.getElementById('mtitle').innerText = t;
+  document.getElementById('mtitle').innerText = 'Покупка: ' + t;
   document.getElementById('modal').style.display = 'flex';
 }
 function closeM() {
