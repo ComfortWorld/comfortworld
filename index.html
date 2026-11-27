@@ -64,16 +64,16 @@ header { background: rgba(9, 13, 22, 0.94); border-bottom: 1px solid var(--borde
 .shop-head h2 { font-size: 24px; font-weight: 900; }
 .shop-head p { font-size: 13px; color: var(--muted); }
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }
-.item { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 20px; text-align: center; position: relative; display: flex; flex-direction: column; }
+.item { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 22px 20px; text-align: center; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
 .item:hover { border-color: var(--red); transform: translateY(-4px); transition: 0.2s; }
 .item.top-rank { border: 1px solid rgba(245, 158, 11, 0.5); box-shadow: 0 0 20px rgba(245, 158, 11, 0.12); }
 .b-top { position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; background: var(--red); color: #fff; }
 .b-sale { background: #22c55e; color: #052e16; }
 .b-gold { background: #f59e0b; color: #090d16; }
-.art { font-size: 46px; margin: 18px 0 12px; }
-.item h3 { font-size: 16px; font-weight: 900; margin-bottom: 6px; }
+.art { font-size: 48px; margin: 16px 0 12px; }
+.item h3 { font-size: 17px; font-weight: 900; margin-bottom: 10px; }
 .desc { font-size: 12px; color: var(--muted); margin-bottom: 14px; flex-grow: 1; line-height: 1.4; }
-.price { font-size: 20px; font-weight: 900; margin-bottom: 14px; }
+.price { font-size: 20px; font-weight: 900; margin-bottom: 16px; }
 .price span { font-size: 12px; color: var(--muted); font-weight: 600; }
 .buy { width: 100%; background: var(--grad); color: #fff; border: none; padding: 11px; border-radius: 10px; font-weight: 800; font-size: 13px; cursor: pointer; }
 .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 40px; }
@@ -164,28 +164,24 @@ footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--mute
         <div class="item" data-cat="rank">
           <div class="art">🧛</div>
           <h3>VAMPIRE</h3>
-          <div class="desc">Префикс [Vampire], 3 точки дома (/sethome) и команда /hat</div>
           <div class="price" data-rub="49" data-uah="19" data-usd="0.5">49 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('VAMPIRE')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">👑</div>
           <h3>GOD</h3>
-          <div class="desc">Права Vampire, виртуальный верстак (/craft) и 4 точки дома</div>
           <div class="price" data-rub="89" data-uah="35" data-usd="0.9">89 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('GOD')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">😈</div>
           <h3>DIABLO</h3>
-          <div class="desc">Эндер-сундук (/ec), утоление голода (/feed) и 5 точек дома</div>
           <div class="price" data-rub="129" data-uah="49" data-usd="1.3">129 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('DIABLO')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">🌀</div>
           <h3>ENIGMA</h3>
-          <div class="desc">Сохранение опыта при смерти, /ext и 6 точек дома</div>
           <div class="price" data-rub="169" data-uah="69" data-usd="1.7">169 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('ENIGMA')">🛒 Купить</button>
         </div>
@@ -193,21 +189,18 @@ footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--mute
           <span class="b-top">ПОПУЛЯРНОЕ</span>
           <div class="art">💎</div>
           <h3>PRIME</h3>
-          <div class="desc">Исцеление (/heal), чистый инвентарь (/clear) и 7 домов</div>
           <div class="price" data-rub="219" data-uah="89" data-usd="2.2">219 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('PRIME')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">🌌</div>
           <h3>AURORA</h3>
-          <div class="desc">Зимние частицы, смена погоды (/pweather) и 8 домов</div>
           <div class="price" data-rub="269" data-uah="109" data-usd="2.7">269 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('AURORA')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">😇</div>
           <h3>ANGEL</h3>
-          <div class="desc">Полёт на спавне (/fly), цветной чат и 9 точек дома</div>
           <div class="price" data-rub="319" data-uah="129" data-usd="3.2">319 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('ANGEL')">🛒 Купить</button>
         </div>
@@ -215,49 +208,42 @@ footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--mute
           <span class="b-top b-sale">СКИДКА</span>
           <div class="art">🍇</div>
           <h3>GRAPE</h3>
-          <div class="desc">Починка предмета (/repair), /near и 10 точек дома</div>
           <div class="price" data-rub="379" data-uah="149" data-usd="3.8">379 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('GRAPE')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">☀️</div>
           <h3>SUMMER</h3>
-          <div class="desc">Смена времени суток (/ptime), /top и 12 точек дома</div>
           <div class="price" data-rub="439" data-uah="179" data-usd="4.4">439 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('SUMMER')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">🌧️</div>
           <h3>RAIN</h3>
-          <div class="desc">Полная починка (/repair all), /back и 14 точек дома</div>
           <div class="price" data-rub="499" data-uah="199" data-usd="5">499 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('RAIN')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">🐎</div>
           <h3>PEGAS</h3>
-          <div class="desc">Свободный полёт (/fly), сохранение вещей и 16 домов</div>
           <div class="price" data-rub="569" data-uah="229" data-usd="5.7">569 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('PEGAS')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">🩵</div>
           <h3>D.MODER</h3>
-          <div class="desc">Донат-модератор: проверка игроков, муты и 18 домов</div>
           <div class="price" data-rub="649" data-uah="259" data-usd="6.5">649 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('D.MODER')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">🛡️</div>
           <h3>D.ST.MODER</h3>
-          <div class="desc">Старший модератор: расширенные права, кики и 20 домов</div>
           <div class="price" data-rub="749" data-uah="299" data-usd="7.5">749 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('D.ST.MODER')">🛒 Купить</button>
         </div>
         <div class="item" data-cat="rank">
           <div class="art">⚔️</div>
           <h3>D.GL.MODER</h3>
-          <div class="desc">Главный модератор: управление порядком, баны и 25 домов</div>
           <div class="price" data-rub="869" data-uah="349" data-usd="8.7">869 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('D.GL.MODER')">🛒 Купить</button>
         </div>
@@ -265,7 +251,6 @@ footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--mute
           <span class="b-top b-gold">МАКСИМУМ</span>
           <div class="art">👑</div>
           <h3>D.OWNER</h3>
-          <div class="desc">Высшая привилегия: все права сервера, WorldEdit и безлимит домов</div>
           <div class="price" data-rub="999" data-uah="399" data-usd="10">999 ₽ <span>/ навсегда</span></div>
           <button class="buy" onclick="openM('D.OWNER')">🛒 Купить</button>
         </div>
@@ -282,3 +267,34 @@ footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--mute
           <div class="art">🔓</div>
           <h3>Разбан аккаунта</h3>
           <div class="desc">Снятие блокировки (кроме грубых нарушений)</div>
+          <div class="price" data-rub="249" data-uah="99" data-usd="2.5">249 ₽ <span>/ услуга</span></div>
+          <button class="buy" onclick="openM('Разбан аккаунта')">🛒 Купить</button>
+        </div>
+      </div>
+      <div class="info-grid" id="about">
+        <div class="info-box">
+          <h3>🎄 О проекте ComfortWorld</h3>
+          <p>Уютный сервер для спокойного выживания и общения. Никаких вайпов без предупреждения и отзывчивая администрация.</p>
+        </div>
+        <div class="info-box" id="rules">
+          <h3>🛡️ Основные правила</h3>
+          <p>Запрещены читы, дюпы, гриферство чужих приватов и оскорбления игроков. Уважайте друг друга и создавайте уют!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div><strong style="color: #fff;">ComfortWorld</strong> • © 2026 Все права защищены. Не является официальным продуктом Mojang.</div>
+    <div>IP: <strong style="color: #38bdf8;">comfortworld.gigacube.host</strong></div>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="m-box">
+    <span class="m-close" onclick="closeM()">&times;</span>
+    <h3 id="mtitle">Покупка</h3>
+    <p>Для покупки напишите администратору, указав ваш <strong>игровой ник</strong> и выбранный товар:</p>
+    <div class="contact-list">
