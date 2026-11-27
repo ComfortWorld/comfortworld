@@ -1,142 +1,288 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ComfortWorld — Зимний сервер Minecraft</title>
-<link href="https://googleapis.com" rel="stylesheet">
-<style>
-:root{--bg:#090d16;--card:#111726;--card2:#161e31;--red:#ef4444;--grad:linear-gradient(90deg,#ef4444,#f97316);--text:#f8fafc;--muted:#94a3b8;--border:rgba(255,255,255,0.08)}
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Montserrat',sans-serif}
-html{scroll-behavior:smooth}
-body{background:radial-gradient(circle at 80% 45%,rgba(56,189,248,0.12),transparent 55%),radial-gradient(circle at 15% 55%,rgba(239,68,68,0.14),transparent 55%),var(--bg);color:var(--text);overflow-x:hidden}
-#snow{position:fixed;inset:0;pointer-events:none;z-index:5}
-.wrap{max-width:1180px;margin:0 auto;padding:0 20px;position:relative;z-index:2}
-header{background:rgba(9,13,22,0.95);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20}
-.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 0;gap:15px;flex-wrap:wrap}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text);font-weight:900;font-size:20px}
-.logo span{color:var(--red)}
-.menu{display:flex;gap:8px;flex-wrap:wrap}
-.menu a{color:var(--muted);text-decoration:none;font-size:13px;font-weight:700;padding:8px 14px;border-radius:10px}
-.menu a:hover,.menu a.act{background:rgba(239,68,68,0.15);color:#fff}
-.right{display:flex;align-items:center;gap:12px}
-.ip-pill{background:var(--card2);border:1px solid var(--border);padding:7px 14px;border-radius:10px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:8px}
-.dot{width:8px;height:8px;background:#22c55e;border-radius:50%}
-.curr{display:flex;background:var(--card2);border:1px solid var(--border);border-radius:10px;overflow:hidden}
-.c-btn{background:transparent;border:none;color:var(--muted);padding:8px 11px;font-size:12px;font-weight:800;cursor:pointer}
-.c-btn.active{background:var(--red);color:#fff}
-.hero{position:relative;padding:75px 0 45px;background:linear-gradient(to bottom,rgba(9,13,22,0.35) 0%,rgba(9,13,22,0.65) 70%,#090d16 100%),linear-gradient(to right,rgba(9,13,22,0.88) 0%,rgba(9,13,22,0.45) 55%,rgba(9,13,22,0.15) 100%),url('bg.png'),url('bg.jpg');background-size:cover;background-position:center}
-.hero-box{max-width:600px}
-.tag{display:inline-block;background:rgba(239,68,68,0.22);border:1px solid rgba(239,68,68,0.45);color:#fca5a5;padding:6px 14px;border-radius:8px;font-size:11px;font-weight:800;margin-bottom:16px}
-.hero h1{font-size:48px;font-weight:900;line-height:1.08;margin-bottom:16px;text-transform:uppercase;text-shadow:0 4px 20px rgba(0,0,0,0.6)}
-.hero h1 span{color:var(--red)}
-.hero p{color:#e2e8f0;font-size:15px;line-height:1.6;margin-bottom:28px;text-shadow:0 2px 10px rgba(0,0,0,0.7)}
-.btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn-red{background:var(--grad);color:#fff;border:none;padding:14px 22px;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block}
-.btn-dark{background:rgba(17,23,38,0.9);color:#fff;border:1px solid rgba(255,255,255,0.15);padding:14px 22px;border-radius:12px;font-weight:700;font-size:14px;text-decoration:none;display:inline-block}
-.btn-dc-hero{background:#5865F2;color:#fff;padding:14px 22px;border-radius:12px;font-weight:800;font-size:14px;text-decoration:none;display:inline-block}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:55px}
-.stat{background:rgba(17,23,38,0.92);border:1px solid var(--border);border-radius:16px;padding:18px 20px;display:flex;align-items:center;gap:14px}
-.stat-ico{font-size:24px}
-.stat-val{font-size:18px;font-weight:900}
-.stat-txt{font-size:12px;color:var(--muted)}
-.shop{padding:35px 0 60px}
-.layout{display:grid;grid-template-columns:240px 1fr;gap:26px;align-items:start}
-.side-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:18px;margin-bottom:18px}
-.side-title{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:1px;margin-bottom:12px;text-transform:uppercase}
-.cat-btn{width:100%;text-align:left;background:transparent;border:none;color:var(--muted);padding:12px 14px;border-radius:12px;font-weight:700;font-size:14px;cursor:pointer;display:block;margin-bottom:6px}
-.cat-btn.active,.cat-btn:hover{background:rgba(239,68,68,0.15);color:#fff;border-left:3px solid var(--red)}
-.tg-btn{display:block;text-align:center;background:#229ED9;color:#fff;text-decoration:none;padding:11px;border-radius:10px;font-weight:800;font-size:13px;margin-top:12px}
-.dc-btn{display:block;width:100%;text-align:center;background:#5865F2;color:#fff;text-decoration:none;border:none;padding:11px;border-radius:10px;font-weight:800;font-size:13px;margin-top:8px;cursor:pointer}
-.shop-head{margin-bottom:20px}
-.shop-head h2{font-size:24px;font-weight:900}
-.shop-head p{font-size:13px;color:var(--muted)}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:18px}
-.item{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px 20px;text-align:center;position:relative;display:flex;flex-direction:column;justify-content:space-between}
-.item:hover{border-color:var(--red);transform:translateY(-4px);transition:0.2s}
-.item.top-rank{border:1px solid rgba(245,158,11,0.5)}
-.b-top{position:absolute;top:12px;left:12px;font-size:10px;font-weight:800;padding:4px 8px;border-radius:6px;background:var(--red);color:#fff}
-.b-sale{background:#22c55e;color:#052e16}
-.b-gold{background:#f59e0b;color:#090d16}
-.art{font-size:48px;margin:16px 0 12px}
-.item h3{font-size:17px;font-weight:900;margin-bottom:10px}
-.desc{font-size:12px;color:var(--muted);margin-bottom:14px;flex-grow:1;line-height:1.4}
-.price{font-size:20px;font-weight:900;margin-bottom:16px}
-.price span{font-size:12px;color:var(--muted);font-weight:600}
-.buy{width:100%;background:var(--grad);color:#fff;border:none;padding:11px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer}
-.info-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;margin-top:40px}
-.info-box h3{font-size:17px;margin-bottom:8px}
-.info-box p{font-size:13px;color:var(--muted);line-height:1.6}
-footer{border-top:1px solid var(--border);padding:28px 0;color:var(--muted);font-size:12px}
-.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;padding:20px}
-.m-box{background:var(--card2);border:1px solid var(--red);border-radius:20px;padding:28px;max-width:420px;width:100%;text-align:center;position:relative}
-.m-close{position:absolute;top:14px;right:18px;font-size:24px;color:var(--muted);cursor:pointer}
-.m-box h3{margin-bottom:12px;font-size:20px}
-.m-box p{color:#cbd5e1;font-size:14px;line-height:1.6;margin-bottom:14px}
-.contact-list{display:flex;flex-direction:column;gap:10px;margin:16px 0}
-@media(max-width:850px){.layout,.stats{grid-template-columns:1fr}.hero h1{font-size:34px}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComfortWorld — Зимний сервер Minecraft</title>
+  <link href="https://googleapis.com" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card: #111726;
+      --card2: #161e31;
+      --red: #ef4444;
+      --grad: linear-gradient(90deg, #ef4444, #f97316);
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+    html { scroll-behavior: smooth; }
+    body { background: radial-gradient(circle at 80% 45%, rgba(56, 189, 248, 0.12), transparent 55%), radial-gradient(circle at 15% 55%, rgba(239, 68, 68, 0.14), transparent 55%), var(--bg); color: var(--text); overflow-x: hidden; }
+    #snow { position: fixed; inset: 0; pointer-events: none; z-index: 5; }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 2; }
+    header { background: rgba(9, 13, 22, 0.95); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 20; }
+    .nav { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; gap: 15px; flex-wrap: wrap; }
+    .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text); font-weight: 900; font-size: 20px; }
+    .logo span { color: var(--red); }
+    .menu { display: flex; gap: 8px; flex-wrap: wrap; }
+    .menu a { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 700; padding: 8px 14px; border-radius: 10px; }
+    .menu a:hover, .menu a.act { background: rgba(239, 68, 68, 0.15); color: #fff; }
+    .right { display: flex; align-items: center; gap: 12px; }
+    .ip-pill { background: var(--card2); border: 1px solid var(--border); padding: 7px 14px; border-radius: 10px; font-size: 12px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; }
+    .curr { display: flex; background: var(--card2); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .c-btn { background: transparent; border: none; color: var(--muted); padding: 8px 11px; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .c-btn.active { background: var(--red); color: #fff; }
+    .hero { position: relative; padding: 75px 0 45px; background: linear-gradient(to bottom, rgba(9, 13, 22, 0.35) 0%, rgba(9, 13, 22, 0.65) 70%, #090d16 100%), linear-gradient(to right, rgba(9, 13, 22, 0.88) 0%, rgba(9, 13, 22, 0.45) 55%, rgba(9, 13, 22, 0.15) 100%), url('bg.png'), url('bg.jpg'); background-size: cover; background-position: center; }
+    .hero-box { max-width: 600px; }
+    .tag { display: inline-block; background: rgba(239, 68, 68, 0.22); border: 1px solid rgba(239, 68, 68, 0.45); color: #fca5a5; padding: 6px 14px; border-radius: 8px; font-size: 11px; font-weight: 800; margin-bottom: 16px; }
+    .hero h1 { font-size: 48px; font-weight: 900; line-height: 1.08; margin-bottom: 16px; text-transform: uppercase; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.6); }
+    .hero h1 span { color: var(--red); }
+    .hero p { color: #e2e8f0; font-size: 15px; line-height: 1.6; margin-bottom: 28px; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.7); }
+    .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-red { background: var(--grad); color: #fff; border: none; padding: 14px 22px; border-radius: 12px; font-weight: 800; font-size: 14px; cursor: pointer; text-decoration: none; display: inline-block; }
+    .btn-dark { background: rgba(17, 23, 38, 0.9); color: #fff; border: 1px solid rgba(255, 255, 255, 0.15); padding: 14px 22px; border-radius: 12px; font-weight: 700; font-size: 14px; text-decoration: none; display: inline-block; }
+    .btn-dc-hero { background: #5865F2; color: #fff; padding: 14px 22px; border-radius: 12px; font-weight: 800; font-size: 14px; text-decoration: none; display: inline-block; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 55px; }
+    .stat { background: rgba(17, 23, 38, 0.92); border: 1px solid var(--border); border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 14px; }
+    .stat-ico { font-size: 24px; }
+    .stat-val { font-size: 18px; font-weight: 900; }
+    .stat-txt { font-size: 12px; color: var(--muted); }
+    .shop { padding: 35px 0 60px; }
+    .layout { display: grid; grid-template-columns: 240px 1fr; gap: 26px; align-items: start; }
+    .side-box { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 18px; margin-bottom: 18px; }
+    .side-title { font-size: 11px; font-weight: 800; color: var(--muted); letter-spacing: 1px; margin-bottom: 12px; text-transform: uppercase; }
+    .cat-btn { width: 100%; text-align: left; background: transparent; border: none; color: var(--muted); padding: 12px 14px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; display: block; margin-bottom: 6px; }
+    .cat-btn.active, .cat-btn:hover { background: rgba(239, 68, 68, 0.15); color: #fff; border-left: 3px solid var(--red); }
+    .tg-btn { display: block; text-align: center; background: #229ED9; color: #fff; text-decoration: none; padding: 11px; border-radius: 10px; font-weight: 800; font-size: 13px; margin-top: 12px; }
+    .dc-btn { display: block; width: 100%; text-align: center; background: #5865F2; color: #fff; text-decoration: none; border: none; padding: 11px; border-radius: 10px; font-weight: 800; font-size: 13px; margin-top: 8px; cursor: pointer; }
+    .shop-head { margin-bottom: 20px; }
+    .shop-head h2 { font-size: 24px; font-weight: 900; }
+    .shop-head p { font-size: 13px; color: var(--muted); }
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 18px; }
+    .item { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 22px 20px; text-align: center; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+    .item:hover { border-color: var(--red); transform: translateY(-4px); transition: 0.2s; }
+    .item.top-rank { border: 1px solid rgba(245, 158, 11, 0.5); }
+    .b-top { position: absolute; top: 12px; left: 12px; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; background: var(--red); color: #fff; }
+    .b-sale { background: #22c55e; color: #052e16; }
+    .b-gold { background: #f59e0b; color: #090d16; }
+    .art { font-size: 48px; margin: 16px 0 12px; }
+    .item h3 { font-size: 17px; font-weight: 900; margin-bottom: 10px; }
+    .desc { font-size: 12px; color: var(--muted); margin-bottom: 14px; flex-grow: 1; line-height: 1.4; }
+    .price { font-size: 20px; font-weight: 900; margin-bottom: 16px; }
+    .price span { font-size: 12px; color: var(--muted); font-weight: 600; }
+    .buy { width: 100%; background: var(--grad); color: #fff; border: none; padding: 11px; border-radius: 10px; font-weight: 800; font-size: 13px; cursor: pointer; }
+    .info-box { background: var(--card); border: 1px solid var(--border); border-radius: 18px; padding: 22px; margin-top: 40px; }
+    .info-box h3 { font-size: 17px; margin-bottom: 8px; }
+    .info-box p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    footer { border-top: 1px solid var(--border); padding: 28px 0; color: var(--muted); font-size: 12px; }
+    .foot { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+    .modal { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0, 0, 0, 0.8); align-items: center; justify-content: center; padding: 20px; }
+    .m-box { background: var(--card2); border: 1px solid var(--red); border-radius: 20px; padding: 28px; max-width: 420px; width: 100%; text-align: center; position: relative; }
+    .m-close { position: absolute; top: 14px; right: 18px; font-size: 24px; color: var(--muted); cursor: pointer; }
+    .m-box h3 { margin-bottom: 12px; font-size: 20px; }
+    .m-box p { color: #cbd5e1; font-size: 14px; line-height: 1.6; margin-bottom: 14px; }
+    .contact-list { display: flex; flex-direction: column; gap: 10px; margin: 16px 0; }
+    @media (max-width: 850px) { .layout, .stats { grid-template-columns: 1fr; } .hero h1 { font-size: 34px; } }
+  </style>
 </head>
 <body>
-<canvas id="snow"></canvas>
-<header>
-<div class="wrap nav">
-<a href="#" class="logo">❄️ Comfort<span>World</span></a>
-<nav class="menu">
-<a href="#" class="act">🏠 Главная</a>
-<a href="#shop">🛒 Магазин</a>
-<a href="#about">ℹ️ О проекте</a>
-<a href="https://discord.gg" target="_blank">🎮 Discord</a>
-</nav>
-<div class="right">
-<div class="ip-pill"><span class="dot"></span> comfortworld.gigacube.host</div>
-<div class="curr">
-<button class="c-btn active" onclick="setC('RUB',this)">₽ RUB</button>
-<button class="c-btn" onclick="setC('UAH',this)">₴ UAH</button>
-<button class="c-btn" onclick="setC('USD',this)">$ USD</button>
-</div>
-</div>
-</div>
-</header>
-<section class="hero">
-<div class="wrap">
-<div class="hero-box">
-<div class="tag">❄️ ДОБРО ПОЖАЛОВАТЬ НА СЕРВЕР</div>
-<h1>ТВОЙ МИР.<br><span>ТВОИ ПРАВИЛА.</span></h1>
-<p>Открой для себя уютный зимний Minecraft. Получай привилегии, развивайся, играй с друзьями и создавай свою историю на ComfortWorld!</p>
-<div class="btns">
-<button class="btn-red" id="ip-btn" onclick="copyIP()">📋 Скопировать IP</button>
-<a href="#shop" class="btn-dark">Открыть магазин →</a>
-<a href="https://discord.gg" target="_blank" class="btn-dc-hero">🎮 Наш Discord</a>
-</div>
-</div>
-<div class="stats">
-<div class="stat"><div class="stat-ico">❄️</div><div><div class="stat-val">Зимний сезон</div><div class="stat-txt">Атмосферный спавн и ивенты</div></div></div>
-<div class="stat"><div class="stat-ico">👑</div><div><div class="stat-val">15 Привилегий</div><div class="stat-txt">От Vampire до D.Owner</div></div></div>
-<div class="stat"><div class="stat-ico">⚡</div><div><div class="stat-val">99.9% Аптайм</div><div class="stat-txt">Стабильная работа сервера 24/7</div></div></div>
-</div>
-</div>
-</section>
-<section class="shop" id="shop">
-<div class="wrap layout">
-<aside>
-<div class="side-box">
-<div class="side-title">Категории магазина</div>
-<button class="cat-btn active" onclick="filterCat('rank',this)">👑 Привилегии (15)</button>
-<button class="cat-btn" onclick="filterCat('case',this)">🎁 Сундуки</button>
-<button class="cat-btn" onclick="filterCat('service',this)">⚡ Услуги</button>
-</div>
-<div class="side-box">
-<div class="side-title">Наше сообщество</div>
-<p style="font-size:13px;color:#cbd5e1;line-height:1.5">Вступай в наш Discord-сервер, общайся с игроками и следи за новостями:</p>
-<a href="https://discord.gg" target="_blank" class="dc-btn" style="margin-top:12px">🎮 Discord-сервер</a>
-<a href="https://t.me" target="_blank" class="tg-btn">✈️ Админ в Telegram</a>
-</div>
-</aside>
-<div>
-<div class="shop-head">
-<h2 id="cat-title">👑 Привилегии (15)</h2>
-<p>Выбери подходящую привилегию для своего аккаунта</p>
-</div>
-<div class="cards">
+  <canvas id="snow"></canvas>
+
+  <header>
+    <div class="wrap nav">
+      <a href="#" class="logo">❄️ Comfort<span>World</span></a>
+      <nav class="menu">
+        <a href="#" class="act">🏠 Главная</a>
+        <a href="#shop">🛒 Магазин</a>
+        <a href="#about">ℹ️ О проекте</a>
+        <a href="https://discord.gg" target="_blank">🎮 Discord</a>
+      </nav>
+      <div class="right">
+        <div class="ip-pill"><span class="dot"></span> comfortworld.gigacube.host</div>
+        <div class="curr">
+          <button class="c-btn active" onclick="setC('RUB', this)">₽ RUB</button>
+          <button class="c-btn" onclick="setC('UAH', this)">₴ UAH</button>
+          <button class="c-btn" onclick="setC('USD', this)">$ USD</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-box">
+        <div class="tag">❄️ ДОБРО ПОЖАЛОВАТЬ НА СЕРВЕР</div>
+        <h1>ТВОЙ МИР.<br><span>ТВОИ ПРАВИЛА.</span></h1>
+        <p>Открой для себя уютный зимний Minecraft. Получай привилегии, развивайся, играй с друзьями и создавай свою историю на ComfortWorld!</p>
+        <div class="btns">
+          <button class="btn-red" id="ip-btn" onclick="copyIP()">📋 Скопировать IP</button>
+          <a href="#shop" class="btn-dark">Открыть магазин →</a>
+          <a href="https://discord.gg" target="_blank" class="btn-dc-hero">🎮 Наш Discord</a>
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><div class="stat-ico">❄️</div><div><div class="stat-val">Зимний сезон</div><div class="stat-txt">Атмосферный спавн и ивенты</div></div></div>
+        <div class="stat"><div class="stat-ico">👑</div><div><div class="stat-val">15 Привилегий</div><div class="stat-txt">От Vampire до D.Owner</div></div></div>
+        <div class="stat"><div class="stat-ico">⚡</div><div><div class="stat-val">99.9% Аптайм</div><div class="stat-txt">Стабильная работа сервера 24/7</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="shop" id="shop">
+    <div class="wrap layout">
+      <aside>
+        <div class="side-box">
+          <div class="side-title">Категории магазина</div>
+          <button class="cat-btn active" onclick="filterCat('rank', this)">👑 Привилегии (15)</button>
+          <button class="cat-btn" onclick="filterCat('case', this)">🎁 Сундуки</button>
+          <button class="cat-btn" onclick="filterCat('service', this)">⚡ Услуги</button>
+        </div>
+        <div class="side-box">
+          <div class="side-title">Наше сообщество</div>
+          <p style="font-size: 13px; color: #cbd5e1; line-height: 1.5;">Вступай в наш Discord-сервер, общайся с игроками и следи за новостями:</p>
+          <a href="https://discord.gg" target="_blank" class="dc-btn" style="margin-top: 12px;">🎮 Discord-сервер</a>
+          <a href="https://t.me" target="_blank" class="tg-btn">✈️ Админ в Telegram</a>
+        </div>
+      </aside>
+
+      <div>
+        <div class="shop-head">
+          <h2 id="cat-title">👑 Привилегии (15)</h2>
+          <p>Выбери подходящую привилегию для своего аккаунта</p>
+        </div>
+
+        <div class="cards">
+          <div class="item" data-cat="rank">
+            <div class="art">🧛</div>
+            <h3>VAMPIRE</h3>
+            <div class="price" data-rub="49" data-uah="19" data-usd="0.5">49 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('VAMPIRE')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">👑</div>
+            <h3>GOD</h3>
+            <div class="price" data-rub="89" data-uah="35" data-usd="0.9">89 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('GOD')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">😈</div>
+            <h3>DIABLO</h3>
+            <div class="price" data-rub="129" data-uah="49" data-usd="1.3">129 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('DIABLO')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">🌀</div>
+            <h3>ENIGMA</h3>
+            <div class="price" data-rub="169" data-uah="69" data-usd="1.7">169 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('ENIGMA')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <span class="b-top">ПОПУЛЯРНОЕ</span>
+            <div class="art">💎</div>
+            <h3>PRIME</h3>
+            <div class="price" data-rub="219" data-uah="89" data-usd="2.2">219 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('PRIME')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">🌌</div>
+            <h3>AURORA</h3>
+            <div class="price" data-rub="269" data-uah="109" data-usd="2.7">269 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('AURORA')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">😇</div>
+            <h3>ANGEL</h3>
+            <div class="price" data-rub="319" data-uah="129" data-usd="3.2">319 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('ANGEL')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <span class="b-top b-sale">СКИДКА</span>
+            <div class="art">🍇</div>
+            <h3>GRAPE</h3>
+            <div class="price" data-rub="379" data-uah="149" data-usd="3.8">379 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('GRAPE')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">☀️</div>
+            <h3>SUMMER</h3>
+            <div class="price" data-rub="439" data-uah="179" data-usd="4.4">439 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('SUMMER')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">🌧️</div>
+            <h3>RAIN</h3>
+            <div class="price" data-rub="499" data-uah="199" data-usd="5">499 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('RAIN')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">🐎</div>
+            <h3>PEGAS</h3>
+            <div class="price" data-rub="569" data-uah="229" data-usd="5.7">569 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('PEGAS')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">🩵</div>
+            <h3>D.MODER</h3>
+            <div class="price" data-rub="649" data-uah="259" data-usd="6.5">649 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('D.MODER')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">🛡️</div>
+            <h3>D.ST.MODER</h3>
+            <div class="price" data-rub="749" data-uah="299" data-usd="7.5">749 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('D.ST.MODER')">🛒 Купить</button>
+          </div>
+          <div class="item" data-cat="rank">
+            <div class="art">⚔️</div>
+            <h3>D.GL.MODER</h3>
+            <div class="price" data-rub="869" data-uah="349" data-usd="8.7">869 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('D.GL.MODER')">🛒 Купить</button>
+          </div>
+          <div class="item top-rank" data-cat="rank">
+            <span class="b-top b-gold">МАКСИМУМ</span>
+            <div class="art">👑</div>
+            <h3>D.OWNER</h3>
+            <div class="price" data-rub="999" data-uah="399" data-usd="10">999 ₽ <span>/ навсегда</span></div>
+            <button class="buy" onclick="openM('D.OWNER')">🛒 Купить</button>
+          </div>
+
+          <div class="item" data-cat="case" style="display: none;">
+            <span class="b-top">ЗИМНИЙ</span>
+            <div class="art">🎁</div>
+            <h3>Донат-кейс (3 шт.)</h3>
+            <div class="desc">Шанс выбить привилегию от VAMPIRE до D.OWNER</div>
+            <div class="price" data-rub="149" data-uah="59" data-usd="1.5">149 ₽ <span>/ набор</span></div>
+            <button class="buy" onclick="openM('Донат-кейс (3 шт.)')">🛒 Купить</button>
+          </div>
+
+          <div class="item" data-cat="service" style="display: none;">
+            <div class="art">🔓</div>
+            <h3>Разбан аккаунта</h3>
+            <div class="desc">Снятие блокировки (кроме грубых нарушений)</div>
+            <div class="price" data-rub="249" data-uah="99" data-usd="2.5">249 ₽ <span>/ услуга</span></div>
+            <button class="buy" onclick="openM('Разбан аккаунта')">🛒 Купить</button>
+          </div>
+        </div>
+
+        <div class="info-box" id="about">
+          <h3>🎄 О проекте ComfortWorld</h3>
+          <p>Уютный зимний сервер с честной игрой, уникальными ивентами и отзывчивой администрацией. Присоединяйся по IP: <strong style="color: #38bdf8;">comfortworld.gigacube.host</strong> или заходи в наш <a href="https://discord.gg" target="_blank" style="color: #818cf8; font-weight: 700;">Discord-сервер</a>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div><strong style="color: #fff;">ComfortWorld</strong> • © 2026 Все права защищены. Не является официальным продуктом Mojang.</div>
+      <div>IP: <strong style="color: #38bdf8;">comfortworld.gigacube.host</strong></div>
+    </div>
+  </footer>
+
+  <div class="modal" id="modal">
+    <div class="m-box">
+      <span class="m-close" onclick="closeM()">&times;</span>
+      <h3 id="mtitle">Покупка</h3>
