@@ -8,9 +8,8 @@
     <style>
         :root {
             --bg-dark: #0b1320;
-            --bg-card: rgba(23, 37, 62, 0.75);
+            --bg-card: rgba(23, 37, 62, 0.78);
             --accent: #38bdf8;
-            --accent-hover: #0284c7;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: rgba(56, 189, 248, 0.25);
@@ -23,6 +22,10 @@
             font-family: 'Montserrat', sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background: radial-gradient(circle at top, #172a46 0%, var(--bg-dark) 100%);
             color: var(--text-main);
@@ -31,7 +34,6 @@
             position: relative;
         }
 
-        /* Снежинки */
         #snow-canvas {
             position: fixed;
             top: 0;
@@ -50,7 +52,6 @@
             z-index: 2;
         }
 
-        /* Шапка */
         header {
             display: flex;
             justify-content: space-between;
@@ -91,10 +92,9 @@
             color: var(--accent);
         }
 
-        /* Переключатель валют */
         .currency-switcher {
             display: flex;
-            background: rgba(11, 19, 32, 0.8);
+            background: rgba(11, 19, 32, 0.85);
             border: 1px solid var(--border-color);
             border-radius: 10px;
             overflow: hidden;
@@ -116,10 +116,9 @@
             color: #0b1320;
         }
 
-        /* Главный экран */
         .hero {
             text-align: center;
-            padding: 90px 20px 70px;
+            padding: 85px 20px 65px;
         }
 
         .badge {
@@ -135,10 +134,14 @@
         }
 
         .hero h1 {
-            font-size: 48px;
+            font-size: 46px;
             font-weight: 800;
             margin-bottom: 20px;
             line-height: 1.2;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
         }
 
         .hero p {
@@ -149,7 +152,6 @@
             line-height: 1.6;
         }
 
-        /* Блок IP */
         .ip-box {
             display: inline-flex;
             align-items: center;
@@ -188,9 +190,8 @@
             transform: translateY(-2px);
         }
 
-        /* Секции */
         section {
-            padding: 60px 0;
+            padding: 55px 0;
         }
 
         .section-title {
@@ -207,7 +208,6 @@
             font-size: 15px;
         }
 
-        /* Сетка карточек */
         .grid-3 {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -246,7 +246,6 @@
             line-height: 1.6;
         }
 
-        /* Карточки доната */
         .donate-card {
             position: relative;
         }
@@ -316,7 +315,6 @@
             color: #0b1320;
         }
 
-        /* Модальное окно покупки */
         .modal {
             display: none;
             position: fixed;
@@ -364,7 +362,6 @@
             margin-bottom: 20px;
         }
 
-        /* Подвал */
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -375,7 +372,7 @@
         }
 
         @media (max-width: 650px) {
-            .hero h1 { font-size: 34px; }
+            .hero h1 { font-size: 32px; }
             header { justify-content: center; }
         }
     </style>
@@ -385,7 +382,6 @@
     <canvas id="snow-canvas"></canvas>
 
     <div class="container">
-        <!-- Шапка -->
         <header>
             <div class="logo">comfort<span>World</span></div>
             <nav>
@@ -393,4 +389,4 @@
                 <a href="#donate">Привилегии</a>
             </nav>
             <div class="currency-switcher">
-
+                <button class="currency-btn active" onclick="setCurrency('UAH', this)">₴ UAH</button>
