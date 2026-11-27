@@ -6,16 +6,7 @@
   <title>ComfortWorld — Зимний сервер Minecraft</title>
   <link href="https://googleapis.com" rel="stylesheet">
   <style>
-    :root {
-      --bg: #090d16;
-      --card: #111726;
-      --card2: #161e31;
-      --red: #ef4444;
-      --grad: linear-gradient(90deg, #ef4444, #f97316);
-      --text: #f8fafc;
-      --muted: #94a3b8;
-      --border: rgba(255, 255, 255, 0.08);
-    }
+    :root { --bg: #090d16; --card: #111726; --card2: #161e31; --red: #ef4444; --grad: linear-gradient(90deg, #ef4444, #f97316); --text: #f8fafc; --muted: #94a3b8; --border: rgba(255, 255, 255, 0.08); }
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
     html { scroll-behavior: smooth; }
     body { background: radial-gradient(circle at 80% 45%, rgba(56, 189, 248, 0.12), transparent 55%), radial-gradient(circle at 15% 55%, rgba(239, 68, 68, 0.14), transparent 55%), var(--bg); color: var(--text); overflow-x: hidden; }
@@ -89,7 +80,6 @@
 </head>
 <body>
   <canvas id="snow"></canvas>
-
   <header>
     <div class="wrap nav">
       <a href="#" class="logo">❄️ Comfort<span>World</span></a>
@@ -109,7 +99,6 @@
       </div>
     </div>
   </header>
-
   <section class="hero">
     <div class="wrap">
       <div class="hero-box">
@@ -122,7 +111,6 @@
           <a href="https://discord.gg" target="_blank" class="btn-dc-hero">🎮 Наш Discord</a>
         </div>
       </div>
-
       <div class="stats">
         <div class="stat"><div class="stat-ico">❄️</div><div><div class="stat-val">Зимний сезон</div><div class="stat-txt">Атмосферный спавн и ивенты</div></div></div>
         <div class="stat"><div class="stat-ico">👑</div><div><div class="stat-val">15 Привилегий</div><div class="stat-txt">От Vampire до D.Owner</div></div></div>
@@ -130,7 +118,6 @@
       </div>
     </div>
   </section>
-
   <section class="shop" id="shop">
     <div class="wrap layout">
       <aside>
@@ -147,126 +134,9 @@
           <a href="https://t.me" target="_blank" class="tg-btn">✈️ Админ в Telegram</a>
         </div>
       </aside>
-
       <div>
-        <div class="shop-head">
-          <h2 id="cat-title">👑 Привилегии (15)</h2>
-          <p>Выбери подходящую привилегию для своего аккаунта</p>
-        </div>
-
-        <div class="cards">
-          <div class="item" data-cat="rank">
-            <div class="art">🧛</div>
-            <h3>VAMPIRE</h3>
-            <div class="price" data-rub="49" data-uah="19" data-usd="0.5">49 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('VAMPIRE')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">👑</div>
-            <h3>GOD</h3>
-            <div class="price" data-rub="89" data-uah="35" data-usd="0.9">89 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('GOD')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">😈</div>
-            <h3>DIABLO</h3>
-            <div class="price" data-rub="129" data-uah="49" data-usd="1.3">129 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('DIABLO')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">🌀</div>
-            <h3>ENIGMA</h3>
-            <div class="price" data-rub="169" data-uah="69" data-usd="1.7">169 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('ENIGMA')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <span class="b-top">ПОПУЛЯРНОЕ</span>
-            <div class="art">💎</div>
-            <h3>PRIME</h3>
-            <div class="price" data-rub="219" data-uah="89" data-usd="2.2">219 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('PRIME')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">🌌</div>
-            <h3>AURORA</h3>
-            <div class="price" data-rub="269" data-uah="109" data-usd="2.7">269 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('AURORA')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">😇</div>
-            <h3>ANGEL</h3>
-            <div class="price" data-rub="319" data-uah="129" data-usd="3.2">319 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('ANGEL')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <span class="b-top b-sale">СКИДКА</span>
-            <div class="art">🍇</div>
-            <h3>GRAPE</h3>
-            <div class="price" data-rub="379" data-uah="149" data-usd="3.8">379 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('GRAPE')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">☀️</div>
-            <h3>SUMMER</h3>
-            <div class="price" data-rub="439" data-uah="179" data-usd="4.4">439 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('SUMMER')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">🌧️</div>
-            <h3>RAIN</h3>
-            <div class="price" data-rub="499" data-uah="199" data-usd="5">499 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('RAIN')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">🐎</div>
-            <h3>PEGAS</h3>
-            <div class="price" data-rub="569" data-uah="229" data-usd="5.7">569 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('PEGAS')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">🩵</div>
-            <h3>D.MODER</h3>
-            <div class="price" data-rub="649" data-uah="259" data-usd="6.5">649 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('D.MODER')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">🛡️</div>
-            <h3>D.ST.MODER</h3>
-            <div class="price" data-rub="749" data-uah="299" data-usd="7.5">749 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('D.ST.MODER')">🛒 Купить</button>
-          </div>
-          <div class="item" data-cat="rank">
-            <div class="art">⚔️</div>
-            <h3>D.GL.MODER</h3>
-            <div class="price" data-rub="869" data-uah="349" data-usd="8.7">869 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('D.GL.MODER')">🛒 Купить</button>
-          </div>
-          <div class="item top-rank" data-cat="rank">
-            <span class="b-top b-gold">МАКСИМУМ</span>
-            <div class="art">👑</div>
-            <h3>D.OWNER</h3>
-            <div class="price" data-rub="999" data-uah="399" data-usd="10">999 ₽ <span>/ навсегда</span></div>
-            <button class="buy" onclick="openM('D.OWNER')">🛒 Купить</button>
-          </div>
-
-          <div class="item" data-cat="case" style="display: none;">
-            <span class="b-top">ЗИМНИЙ</span>
-            <div class="art">🎁</div>
-            <h3>Донат-кейс (3 шт.)</h3>
-            <div class="desc">Шанс выбить привилегию от VAMPIRE до D.OWNER</div>
-            <div class="price" data-rub="149" data-uah="59" data-usd="1.5">149 ₽ <span>/ набор</span></div>
-            <button class="buy" onclick="openM('Донат-кейс (3 шт.)')">🛒 Купить</button>
-          </div>
-
-          <div class="item" data-cat="service" style="display: none;">
-            <div class="art">🔓</div>
-            <h3>Разбан аккаунта</h3>
-            <div class="desc">Снятие блокировки (кроме грубых нарушений)</div>
-            <div class="price" data-rub="249" data-uah="99" data-usd="2.5">249 ₽ <span>/ услуга</span></div>
-            <button class="buy" onclick="openM('Разбан аккаунта')">🛒 Купить</button>
-          </div>
-        </div>
-
+        <div class="shop-head"><h2 id="cat-title">👑 Привилегии (15)</h2><p>Выбери подходящую привилегию для своего аккаунта</p></div>
+        <div class="cards" id="cards"></div>
         <div class="info-box" id="about">
           <h3>🎄 О проекте ComfortWorld</h3>
           <p>Уютный зимний сервер с честной игрой, уникальными ивентами и отзывчивой администрацией. Присоединяйся по IP: <strong style="color: #38bdf8;">comfortworld.gigacube.host</strong> или заходи в наш <a href="https://discord.gg" target="_blank" style="color: #818cf8; font-weight: 700;">Discord-сервер</a>.</p>
@@ -274,15 +144,69 @@
       </div>
     </div>
   </section>
-
   <footer>
     <div class="wrap foot">
       <div><strong style="color: #fff;">ComfortWorld</strong> • © 2026 Все права защищены. Не является официальным продуктом Mojang.</div>
       <div>IP: <strong style="color: #38bdf8;">comfortworld.gigacube.host</strong></div>
     </div>
   </footer>
-
   <div class="modal" id="modal">
     <div class="m-box">
       <span class="m-close" onclick="closeM()">&times;</span>
       <h3 id="mtitle">Покупка</h3>
+      <p>Для покупки напишите администратору, указав ваш <strong>игровой ник</strong> и выбранный товар:</p>
+      <div class="contact-list">
+        <a href="https://t.me" target="_blank" class="tg-btn" style="margin-top: 0;">✈️ Написать в Telegram: @taicer</a>
+        <button onclick="copyDC(this)" class="dc-btn" style="margin-top: 0;">💬 Скопировать Discord: pingvinautist</button>
+        <a href="https://discord.gg" target="_blank" class="dc-btn" style="margin-top: 0; background: #4752c4;">🎮 Перейти в Discord-сервер</a>
+      </div>
+      <p style="color: #38bdf8; font-weight: 700; font-size: 13px;">Выдача происходит в течение 5 минут после оплаты!</p>
+    </div>
+  </div>
+  <script>
+    const ITEMS = [
+      {cat:'rank',ico:'🧛',name:'VAMPIRE',rub:49,uah:19,usd:0.5,per:'/ навсегда'},
+      {cat:'rank',ico:'👑',name:'GOD',rub:89,uah:35,usd:0.9,per:'/ навсегда'},
+      {cat:'rank',ico:'😈',name:'DIABLO',rub:129,uah:49,usd:1.3,per:'/ навсегда'},
+      {cat:'rank',ico:'🌀',name:'ENIGMA',rub:169,uah:69,usd:1.7,per:'/ навсегда'},
+      {cat:'rank',ico:'💎',name:'PRIME',rub:219,uah:89,usd:2.2,per:'/ навсегда',badge:'ПОПУЛЯРНОЕ'},
+      {cat:'rank',ico:'🌌',name:'AURORA',rub:269,uah:109,usd:2.7,per:'/ навсегда'},
+      {cat:'rank',ico:'😇',name:'ANGEL',rub:319,uah:129,usd:3.2,per:'/ навсегда'},
+      {cat:'rank',ico:'🍇',name:'GRAPE',rub:379,uah:149,usd:3.8,per:'/ навсегда',badge:'СКИДКА',bcls:'b-sale'},
+      {cat:'rank',ico:'☀️',name:'SUMMER',rub:439,uah:179,usd:4.4,per:'/ навсегда'},
+      {cat:'rank',ico:'🌧️',name:'RAIN',rub:499,uah:199,usd:5,per:'/ навсегда'},
+      {cat:'rank',ico:'🐎',name:'PEGAS',rub:569,uah:229,usd:5.7,per:'/ навсегда'},
+      {cat:'rank',ico:'🩵',name:'D.MODER',rub:649,uah:259,usd:6.5,per:'/ навсегда'},
+      {cat:'rank',ico:'🛡️',name:'D.ST.MODER',rub:749,uah:299,usd:7.5,per:'/ навсегда'},
+      {cat:'rank',ico:'⚔️',name:'D.GL.MODER',rub:869,uah:349,usd:8.7,per:'/ навсегда'},
+      {cat:'rank',ico:'👑',name:'D.OWNER',rub:999,uah:399,usd:10,per:'/ навсегда',badge:'МАКСИМУМ',bcls:'b-gold',top:true},
+      {cat:'case',ico:'🎁',name:'Донат-кейс (3 шт.)',desc:'Шанс выбить привилегию от VAMPIRE до D.OWNER',rub:149,uah:59,usd:1.5,per:'/ набор',badge:'ЗИМНИЙ'},
+      {cat:'service',ico:'🔓',name:'Разбан аккаунта',desc:'Снятие блокировки (кроме грубых нарушений)',rub:249,uah:99,usd:2.5,per:'/ услуга'}
+    ];
+    let cur = 'RUB', curCat = 'rank';
+    function render() {
+      const box = document.getElementById('cards');
+      box.innerHTML = ITEMS.filter(i => i.cat === curCat).map(i => {
+        const p = cur === 'RUB' ? i.rub + ' ₽' : cur === 'UAH' ? i.uah + ' ₴' : '$' + i.usd;
+        const b = i.badge ? `<span class="b-top ${i.bcls||''}">${i.badge}</span>` : '';
+        const d = i.desc ? `<div class="desc">${i.desc}</div>` : '';
+        return `<div class="item ${i.top?'top-rank':''}">${b}<div class="art">${i.ico}</div><h3>${i.name}</h3>${d}<div class="price">${p} <span>${i.per}</span></div><button class="buy" onclick="openM('${i.name}')">🛒 Купить</button></div>`;
+      }).join('');
+    }
+    render();
+    function copyIP() { navigator.clipboard.writeText('comfortworld.gigacube.host').then(() => { const b = document.getElementById('ip-btn'); b.innerText = '✅ IP Скопирован!'; setTimeout(() => { b.innerText = '📋 Скопировать IP'; }, 2500); }); }
+    function copyDC(btn) { navigator.clipboard.writeText('pingvinautist').then(() => { const old = btn.innerText; btn.innerText = '✅ Ник pingvinautist скопирован!'; btn.style.background = '#22c55e'; setTimeout(() => { btn.innerText = old; btn.style.background = ''; }, 2500); }); }
+    function setC(c, el) { cur = c; document.querySelectorAll('.c-btn').forEach(b => b.classList.remove('active')); el.classList.add('active'); render(); }
+    function filterCat(cat, el) { curCat = cat; document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active')); el.classList.add('active'); document.getElementById('cat-title').innerText = el.innerText; render(); }
+    function openM(t) { document.getElementById('mtitle').innerText = 'Покупка: ' + t; document.getElementById('modal').style.display = 'flex'; }
+    function closeM() { document.getElementById('modal').style.display = 'none'; }
+    window.onclick = e => { if (e.target === document.getElementById('modal')) closeM(); };
+    const cv = document.getElementById('snow'), cx = cv.getContext('2d');
+    let w = cv.width = innerWidth, h = cv.height = innerHeight;
+    addEventListener('resize', () => { w = cv.width = innerWidth; h = cv.height = innerHeight; });
+    const fl = Array.from({ length: 45 }, () => ({ x: Math.random() * w, y: Math.random() * h, r: Math.random() * 2.5 + 1, sy: Math.random() * 0.8 + 0.4, sx: Math.random() * 0.4 - 0.2 }));
+    function draw() { cx.clearRect(0, 0, w, h); cx.fillStyle = 'rgba(255, 255, 255, 0.7)'; cx.beginPath(); for (let f of fl) { cx.moveTo(f.x, f.y); cx.arc(f.x, f.y, f.r, 0, Math.PI * 2); f.y += f.sy; f.x += f.sx; if (f.y > h) { f.y = -5; f.x = Math.random() * w; } } cx.fill(); requestAnimationFrame(draw); }
+    draw();
+  </script>
+</body>
+</html>
